@@ -21,6 +21,11 @@ inputs:
     default: 'test'
     required: true
 
+  mainRepo:
+    description: 'The main repository'
+    default: '@dreaminfluencers/dream-framework'
+    required: true
+
   GITHUB_TOKEN:
     description: 'Github token of the repository (automatically created by Github)'
     default: ${{ github.token }}

@@ -12,6 +12,8 @@ async function run() {
     const github_token = core.getInput('GITHUB_TOKEN');
     const versionName = core.getInput('versionName');
 
+    const mainRepo = core.getInput('mainRepo');
+
     const auth = {
         username: core.getInput('USERNAME'),
         password: core.getInput('PASSWORD')
@@ -45,7 +47,11 @@ async function run() {
             });
             const packageJson = JSON.parse(fs.readFileSync("./tmp/" + repo + "/package.json", "utf8"));
             
-            packageJson.dependencies["@dreaminfluencers/dream-framework"] = versionName;
+            if(location == mainRepo) {
+                packageJson.version = versionName;
+            } else {
+                packageJson.dependencies["@dreaminfluencers/dream-framework"] = versionName;
+            }
 
             fs.writeFileSync("./tmp/" + repo + "/package.json", JSON.stringify(packageJson, null, 4));
 
