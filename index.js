@@ -45,12 +45,12 @@ async function run() {
             });
             const packageJson = JSON.parse(fs.readFileSync("./tmp/" + repo + "/package.json", "utf8"));
             
-            if(location == "dreaminfluencers/dream-framework") {
-                console.log("Set main repo version to", versionName);
-                packageJson.version = versionName;
-            } else {
+            if(packageJson.dependencies["@dreaminfluencers/dream-framework"]) {
                 console.log("Set dependency version to", packageJson.version);
                 packageJson.dependencies["@dreaminfluencers/dream-framework"] = versionName;
+            } else {
+                console.log("Set main repo version to", versionName);
+                packageJson.version = versionName;
             }
 
             fs.writeFileSync("./tmp/" + repo + "/package.json", JSON.stringify(packageJson, null, 4));
