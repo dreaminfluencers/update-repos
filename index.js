@@ -22,6 +22,7 @@ async function run() {
     console.log('repos', _repos);
     console.log('github_token', github_token);
     console.log('versionName', versionName);
+    console.log('mainRepo', mainRepo);
 
     const octokit = github.getOctokit(github_token);
     const context = github.context;
@@ -48,8 +49,10 @@ async function run() {
             const packageJson = JSON.parse(fs.readFileSync("./tmp/" + repo + "/package.json", "utf8"));
             
             if(location == mainRepo) {
+                console.log("Set main repo version to", versionName);
                 packageJson.version = versionName;
             } else {
+                console.log("Set dependency version to", packageJson.version);
                 packageJson.dependencies["@dreaminfluencers/dream-framework"] = versionName;
             }
 
