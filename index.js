@@ -12,8 +12,6 @@ async function run() {
     const github_token = core.getInput('GITHUB_TOKEN');
     const versionName = core.getInput('versionName');
 
-    const mainRepo = core.getInput('mainRepo');
-
     const auth = {
         username: core.getInput('USERNAME'),
         password: core.getInput('PASSWORD')
@@ -22,7 +20,6 @@ async function run() {
     console.log('repos', _repos);
     console.log('github_token', github_token);
     console.log('versionName', versionName);
-    console.log('mainRepo', mainRepo);
 
     const octokit = github.getOctokit(github_token);
     const context = github.context;
@@ -48,7 +45,7 @@ async function run() {
             });
             const packageJson = JSON.parse(fs.readFileSync("./tmp/" + repo + "/package.json", "utf8"));
             
-            if(location == mainRepo) {
+            if(location == "dreaminfluencers/dream-framework") {
                 console.log("Set main repo version to", versionName);
                 packageJson.version = versionName;
             } else {
