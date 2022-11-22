@@ -1,0 +1,13 @@
+{
+    "pull_request": {
+      "head": {
+        "ref": "testinghead"
+      },
+      "base": {
+        "ref": "testingbase"
+      }
+    },
+    "github": {
+        "ref": "v1.0.0"
+    }
+  }

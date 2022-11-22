@@ -1,0 +1,35 @@
+# action.yml
+name: 'Update deam-framework'
+description: 'Update dream-framework and push to other repositories'
+inputs:
+  repos:  # id of input
+    description: 'Which repositories to update'
+    required: true
+
+  versionName:
+    description: 'The name of the version'
+    default: 'v1'
+    required: true
+
+  USERNAME:
+    description: 'Username to GIT'
+    default: 'hundeklemmen'
+    required: true
+
+  PASSWORD:
+    description: 'Password to git'
+    default: ${{ secrets.PASSWORD }}
+    required: true
+
+  GITHUB_TOKEN:
+    description: 'Github token of the repository (automatically created by Github)'
+    default: ${{ github.token }}
+    required: false
+
+outputs:
+  version: # id of output
+    description: 'The new version'
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
