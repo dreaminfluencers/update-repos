@@ -18,7 +18,7 @@ inputs:
 
   PASSWORD:
     description: 'Password to git'
-    default: ${{ secrets.PASSWORD }}
+    default: 'test'
     required: true
 
   GITHUB_TOKEN:
